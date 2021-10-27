@@ -22,6 +22,7 @@ app.set('view engine', '.hbs');
 
 // Middlewares
 app.use(express.urlencoded({extended: false}));
+/* para usar PUT y DELETE */
 app.use(methodOverride('_method'));
 app.use(session({
     secret: 'mysecretapp',

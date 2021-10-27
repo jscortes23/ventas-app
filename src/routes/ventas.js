@@ -33,14 +33,20 @@ router.post('/ventas/new-venta', async (req, res) => {
 
 /* Mostrar las todas la ventas en la pagina */
 router.get('/ventas', async (req, res) => {
-    const ventas = await Venta.find().sort({date:'desc'}).lean();
-    res.render('ventas/all-ventas', {ventas});
+    const ventas = await Venta.find().sort({ date: 'desc' }).lean();
+    res.render('ventas/all-ventas', { ventas });
 });
 
 /* Editar las ventas por id*/
-router.get('/ventas/edit/:id', async(req, res)=>{
-    const venta = await Venta.findById(req.params.id);
-    res.render('ventas/edit-venta', {venta});
-})
+router.get('/ventas/edit/:id', async (req, res) => {
+    const venta = await Venta.findById(req.params.id).lean();
+    res.render('ventas/edit-venta', { venta });
+});
+
+router.put('/ventas/edit-venta/:id', async (req, res) => {
+    const { title, description } = req.body;
+    await Venta.findByIdAndUpdate(req.params.id, { title, description });
+    res.redirect('/ventas');
+});
 
 module.exports = router;

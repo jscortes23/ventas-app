@@ -1,7 +1,10 @@
-<form action="">
+{{!-- Se agrega una consulta ? para usar el put --}}
+<form action="/ventas/edit-venta/{{venta._id}}?_method=put" method="post">
+    {{!-- Para usar el metodo PUT --}}
+    <input type="hidden" name="_method" value="put">
     <div class="my-3">
         <label for="title" class="form-label">Title</label>
-        <input type="text" name="" id="title" class="form-control" placeholder="title" value="{{venta.title}}">
+        <input type="text" name="title" id="title" class="form-control" placeholder="Title" value="{{venta.title}}">
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Description:</label>
