@@ -1,0 +1,25 @@
+<div class="row">
+    {{#each ventas}}
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title d-flex justify-content-between align-items-center">{{title}} <a href="/ventas/edit/{{_id}}"><i
+                            class="bi bi-pencil-square"></i></a> </h4>
+            </div>
+            <div class="card-body d-grid">
+                <p class="card-text">{{description}}</p>
+                <button class="btn btn-danger btn-block btn-sm">Delete</button>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body d-grid">
+                <p class="lead">There are not notes yet</p>
+                <a href="/ventas/new" class="btn btn-success btn-block">Create one venta</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
