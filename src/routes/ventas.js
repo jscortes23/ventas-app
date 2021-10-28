@@ -49,4 +49,9 @@ router.put('/ventas/edit-venta/:id', async (req, res) => {
     res.redirect('/ventas');
 });
 
+router.delete('/ventas/delete/:id', async (req, res) => {
+    await Venta.findByIdAndDelete(req.params.id);
+    res.redirect('/ventas');
+});
+
 module.exports = router;
