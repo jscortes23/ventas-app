@@ -22,6 +22,10 @@
     <p>Navigation</p>
     {{!-- lo unica que cambia es el body lo de mas se mantiene siempre --}}
     <main class="container">
+        {{!-- Usar flash --}}
+        {{> messages}}
+        
+        {{!-- El body si cambia --}}
         {{{ body }}}
     </main>
     <p>Footer</p>

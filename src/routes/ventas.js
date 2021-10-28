@@ -27,6 +27,7 @@ router.post('/ventas/new-venta', async (req, res) => {
     } else {
         const newVenta = new Venta({ title, description });
         await newVenta.save();
+        req.flash('success_msg', 'Venta created successfully');
         res.redirect('/ventas');
     }
 });
@@ -37,20 +38,24 @@ router.get('/ventas', async (req, res) => {
     res.render('ventas/all-ventas', { ventas });
 });
 
-/* Editar las ventas por id*/
+/* Ir al formulario para editar la venta por id*/
 router.get('/ventas/edit/:id', async (req, res) => {
     const venta = await Venta.findById(req.params.id).lean();
     res.render('ventas/edit-venta', { venta });
 });
 
+/* Editar venta */
 router.put('/ventas/edit-venta/:id', async (req, res) => {
     const { title, description } = req.body;
     await Venta.findByIdAndUpdate(req.params.id, { title, description });
+    req.flash('success_msg', 'Venta updated successfully');
     res.redirect('/ventas');
 });
 
+/* Borrar venta */
 router.delete('/ventas/delete/:id', async (req, res) => {
     await Venta.findByIdAndDelete(req.params.id);
+    req.flash('success_msg', 'Venta deleted successfully');
     res.redirect('/ventas');
 });
 
