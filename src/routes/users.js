@@ -23,7 +23,7 @@ router.post('/users/signup', (req, res) => {
     if (password != confirm_password) {
         errors.push({ text: 'Password do not match' });
     }
-    if (password.length > 4) {
+    if (password.length < 4) {
         errors.push({ text: 'Password must be at least 4 characters' });
     }
     if (errors.length > 0) {
