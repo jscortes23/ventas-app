@@ -7,7 +7,7 @@ const session = require('express-session');
 /* Para enviar mensajes entre distintas pantallas */
 const flash = require('connect-flash');
 /* Para autenticar sesión */
-const password = require('passport');
+const passport = require('passport');
 
 // Initiliazations
 const app = express();
