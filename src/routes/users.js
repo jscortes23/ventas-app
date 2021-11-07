@@ -1,11 +1,19 @@
 const router = require('express').Router();
 
 /* Usar modelo de User */
-const User = require('../models/User')
+const User = require('../models/User');
+const passport = require('passport');
 
 router.get('/users/signin', (req, res) => {
     res.render('users/signin');
 });
+
+/* Por defecto el pone el 'local' */
+router.post('/users/signin',passport.authenticate('local',{
+    successRedirect: '/ventas',
+    failureRedirect: '/users/signin',
+    failureFlash: true
+}));
 
 router.get('/users/signup', (req, res) => {
     res.render('users/signup');
