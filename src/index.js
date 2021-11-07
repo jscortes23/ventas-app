@@ -6,10 +6,13 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 /* Para enviar mensajes entre distintas pantallas */
 const flash = require('connect-flash');
+/* Para autenticar sesión */
+const password = require('passport');
 
 // Initiliazations
 const app = express();
 require('./database');
+require('./config/passport');
 
 // Settings
 app.set('port', process.env.PORT || 3000);
@@ -31,6 +34,10 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+/* Usar password para mantener session */
+app.use(passport.initialize());
+app.use(passport.session());
+/* Para enviar mesajes en la pagina web */
 app.use(flash());
 
 // Global Varaibles
