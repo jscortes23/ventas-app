@@ -42,7 +42,7 @@ router.post('/users/signup', async (req, res) => {
     } else {
         const newUser = new User({name, email, password});
         /* Verificar si el email ya fue registrado */
-        const emailUser = await User.findOne({email: email});
+        const emailUser = await User.findOne({email: email}).lean();
         if (emailUser) {
             req.flash('error_msg', 'The email es already in use');
             res.redirect('/users/signup');
